@@ -1,3 +1,29 @@
+"use client ";
+
+import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
+
 export default function Home() {
-  return <div>hello wahid</div>;
+  return (
+    <SessionProvider>
+      <RealHome />
+    </SessionProvider>
+  );
+}
+
+function RealHome() {
+  const session = useSession();
+
+  return (
+    <div>
+      {session.status === "authenticated" && (
+        <button onClick={() => signOut()}>Logout</button>
+      )}
+
+      {session.status === "unauthenticated" && (
+        <button onClick={() => signIn()}>Sign In</button>
+      )}
+
+      {JSON.stringify(session)}
+    </div>
+  );
 }

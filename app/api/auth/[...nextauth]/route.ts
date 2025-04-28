@@ -5,7 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      name: "  email",
+      name: "email",
       credentials: {
         username: {
           label: "username",
@@ -13,7 +13,6 @@ const handler = NextAuth({
           placeholder: "harkirat@gmail.com",
         },
         password: { label: "Password", type: "password" },
-        adminpassword: { label: "Admin password", type: "password" },
       },
 
       async authorize(credentials, res) {
